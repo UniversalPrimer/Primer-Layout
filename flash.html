@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Test af video element</title>
+        <script src="js/js-video.js"> </script>
+        <!-- <script src="js/video.js"> </script>-->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/ui.css" />
+		<style>
+			body {
+				font-family : "Helvetica", sans-serif;
+				color : #555;
+				background : #fafafa;
+				padding : 0;
+				margin : 0;
+				font-size : 14px;
+				-webkit-user-select : none;
+				user-select : none;
+			}
+
+			body.night {
+				background : #090909;
+			}
+
+			#tit {
+				border-bottom : 1px #b9b9b9 solid;
+				padding : 15px;
+				margin : 0 0 15px 0;
+				box-shadow : 0 2px 20px rgba(0,0,0,0.1);
+			}
+
+			body.night #tit {
+				border-bottom : 1px #222 solid;
+				box-shadow : 0 2px 20px rgba(120,200,200,0.1);
+			}
+
+			#tit h1, 
+			#tit h3 {
+				margin : 0 0 0px 0;
+				text-shadow : 0 0 0 transparent!important;
+			}
+
+			#tit h3 {
+				color : #999 !important;
+			}	
+
+			#main {
+				padding : 0 15px 15px 15px;
+			}
+		</style>
+    </head>
+    <body>
+		<div id="tit">
+			<div class="button" style="float:right"><a href="#" onclick="toggle(this); return false">Day/Night</a></div>
+			<h1>Video example player</h1>
+			<h3>Two times Big Buck Bunny</h3>
+		</div>
+	
+		<div id="main">
+			<div id="display1" class="upVideoDisplay" style="float:left; margin:0 30px 0 0;">
+			<object id="videooo">
+				<param name="movie" value="callBack.swf" />
+				<param name="src" value="hvaaaad.flv" />
+				<param name="allowscriptaccess" value="always" />
+			</object>
+			</div>
+		</div>
+
+		<script>
+			window.setTimeout(function() {
+			var vid = document.getElementById('videooo');
+			vid.setSource();
+			}, 1500);
+		</script>
+    </body>
+</html>
