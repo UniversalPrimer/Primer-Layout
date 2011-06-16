@@ -89,7 +89,6 @@
     </head>
     <body onload="start();">
 		<div id="tit">
-			<div class="button" style="float:right"><a href="#" onclick="toggle(this); return false">Day/Night</a></div>
 			<h1>Applied Statistics and Statistical Software</h1>
 			<h3>Course 02441 : Lasse Engbo Christiansen, IMM</h3>
 		</div>
@@ -171,6 +170,8 @@
 				up2.setWidth(768);
             }
 
+            // This function is not currently available in the UI, since the
+            // night mode is still lacking some elements
             function toggle(el) {
                 var p = el.parentNode;
                 var state = (p.className === 'button')
