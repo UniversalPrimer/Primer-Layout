@@ -384,6 +384,11 @@ upVideo = (function upVideo(holder) {
 			this.playicon.style.top = (height/2) - 45 + 'px';
 		},
 
+        setHeight : function(height) {
+            // Much simpler then what is going on up above
+            this.video.height = height;
+        },
+
         loadVideo : function(videoId) {
             videoUrl = videoId;
             if (html5video) {
