@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <title>Primer</title>
+        <script src="js/js-video.js"> </script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/ui.css" />
+        <link rel="stylesheet" type="text/css" href="css/env.css" />
+    </head>
+    <body onload="start();">
+		<div id="tit">
+			<h1>Live stream : From the Chambers of Code</h1>
+            <h3>Burt Reynolds is currently out of town</h3>
+		</div>
+	
+		<div id="main">
+			<div id="display2" class="upVideoDisplay" style="float:left; margin:0;"></div>
+
+            <div id="slides1" class="upSlideDisplay" style="float:left; margin:0 40px">
+                <div class="loader">Slides</div>
+            </div>
+
+		</div>
+
+        <script>
+			vid1 = null;
+
+            function start() {
+                var mainvid = getUrlVars()['vid']; 
+
+				ho2 = document.getElementById('display2');
+				up2 = new upVideo(); 
+				up2.setup(ho2);
+				up2.video.setSource('http://hmmedia.imm.dtu.dk:8000/stream0.ogg',true);
+				up2.setWidth(320);
+				//up2.setWidth(800);
+            }
+
+            // This function is not currently available in the UI, since the
+            // night mode is still lacking some elements
+            function toggle(el) {
+                var p = el.parentNode;
+                var state = (p.className === 'button')
+                p.className = state ? 'button toggle' : 'button';
+                
+                document.body.className = state ? 'night' : '';
+            }
+
+        </script>
+    </body>
+</html>
