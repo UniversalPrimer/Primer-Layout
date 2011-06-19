@@ -1,3 +1,18 @@
+.upSlideDisplay {
+    background  :   #333;
+    width       :   640px;
+    height      :   480px;
+}
+
+.upSlideDisplay .loader {
+    width       :   320px;
+    margin      :   200px auto;
+    font-size   :   3em;
+    color       :   #ccc;
+    text-align  :   center;
+    text-shadow :   0 2px 0 #121212;
+}
+
 video {
 	background	:	#333;
 	cursor		:	pointer;
@@ -8,6 +23,8 @@ video {
 
 .upVideoDisplay {
 	position	:	relative;
+    padding     :   0;
+    overflow    :   hidden;
 }
 
 .playiconwrapper {
@@ -53,6 +70,10 @@ body.night .up-scrubber {
 
 .upVideoDisplay:hover .up-handle {
 	opacity		:	1;
+}
+
+.upVideoDisplay:hover .up-controls{
+    opacity     :   0.9;
 }
 
 .up-played,
@@ -160,10 +181,6 @@ body.night .up-controls .timedisplay {
 body.night .up-controls {
 	background-position	:	0 28px;
 	border :	1px #333 solid;
-}
-
-.upVideoDisplay:hover .up-controls{
-    opacity     :   0.9;
 }
 
 .up-controls .up-toggle {
