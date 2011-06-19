@@ -26,7 +26,7 @@ html5player = (function html5player(playerId) {
 	videoDisplay.addEventListener('loadedmetadata', function() { }, false);
 	videoDisplay.addEventListener('timeupdate', function() { this.updateTime(); }, false);
 
-	videoDisplay.setSource = function(videoId) {
+	videoDisplay.setSource = function(videoId, hardUrl) {
 		this.poster = 'video/ss/' + videoId + '.jpg';
 
 		// Add the webm source
@@ -39,6 +39,11 @@ html5player = (function html5player(playerId) {
 		var source = document.createElement('source');
 		source.src = videoBaseFolder + videoId + '.ogg';
 		source.type = 'video/ogg; codecs="theora, vorbis"';
+
+        if (hardUrl) {
+            source.src = videoId;
+        }
+
 		this.appendChild(source);
 	};
 
@@ -52,6 +57,36 @@ html5player = (function html5player(playerId) {
 			this.parentNode.className = 'upVideoDisplay paused';
 		}
 	};
+
+    videoDisplay.fullscreen = function() {
+        var h = videoDisplay.parentNode;
+        document.body.appendChild(h);
+
+
+        videoDisplay.style.width = '100%';
+
+        h.style.position = 'absolute';
+        h.style.top = '0';
+        h.style.right = '0';
+        h.style.bottom = '0';
+        h.style.left = '0';
+
+        h.addEventListener('mousemove', function(ev) {
+            clearTimeout(window.fullscreen_timer); 
+
+            h.childNodes[2].style.opacity = '1';
+            h.childNodes[3].style.height = '15px';
+            document.body.style.cursor = 'default';
+
+            window.fullscreen_timer = window.setTimeout(function() {
+                h.childNodes[2].style.opacity = '0';
+                h.childNodes[3].style.height = '4px';
+                // For some reason, turning the cursor 'off' breaks everything
+                // in chrome ...
+                //document.body.style.cursor = 'none';
+            }, 1900);
+        });
+    }
 
 	return videoDisplay
 });
@@ -180,7 +215,12 @@ upVideo = (function upVideo(holder) {
             totmin = (totmin < 10) ? '0' + totmin : totmin;
             totsecs = (totsecs < 10) ? '0' + totsecs : totsecs;
 
-			var str = curhour + ':' + curmin + ':' + cursecs + ' / ' + tothour + ':' + totmin + ':' + totsecs;
+            if (tothour > 0) {
+			    var str = curhour + ':' + curmin + ':' + cursecs + ' / ' + tothour + ':' + totmin + ':' + totsecs;
+            } else {
+			    var str = curmin + ':' + cursecs + ' / ' + totmin + ':' + totsecs;
+            }
+
 			timeDisplay.innerHTML = str; 
 		}
 
