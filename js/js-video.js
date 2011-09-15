@@ -6,8 +6,7 @@
 */
 
 window.playerIsReady = function(st) {
-	console.log('den siger den er klar');
-	console.log(st);
+	console.log('den siger den er klar- og burgere');
 }
 
 var videoBaseFolder = 'http://hmmedie.imm.dtu.dk/videos/';
@@ -97,7 +96,7 @@ flashplayer = (function flashplayer(playerId) {
 	//videoDisplay.height = '390';
 	videoDisplay.id = playerId;
 	var param = document.createElement('param');
-	param.value = 'callBack.swf';
+	param.value = 'player2.swf';
 	param.name = 'movie';
 
 	var wmode = document.createElement('param');
@@ -106,9 +105,14 @@ flashplayer = (function flashplayer(playerId) {
 
 	var embed = document.createElement('embed');
 	embed.name = 'videoDisplayembed';
-	embed.src = 'callBack.swf';
+	embed.src = 'player2.swf';
+
+    var scale = document.createElement('param');
+    scale.name = 'scale';
+    scale.value = 'exactfit';
 
 	videoDisplay.appendChild(param);
+	videoDisplay.appendChild(scale);
 	videoDisplay.appendChild(wmode);
 	videoDisplay.appendChild(embed);
 
@@ -122,8 +126,13 @@ flashplayer = (function flashplayer(playerId) {
 		}
 	};
 	
-	videoDisplay.setSource = function(src) {
-		this.setSource(videoBaseFolder + src + '.flv');
+	videoDisplay.setSource2 = function(videoId, hardUrl) {
+        console.log('setting source');
+        if (hardUrl) {
+            this.setSource(videoId);
+        } else {
+            this.setSource(videoBaseFolder + videoId + '.flv');
+        }
 	};
 
 	return videoDisplay
@@ -161,11 +170,9 @@ upVideo = (function upVideo(holder) {
     var videoSource = null;
 
     // Testing
-    var html5video = (getUrlVars()['html5'] == 'oui');
+    // Right now we just set this to html5 we're ust testing
+    var html5video = true; //(getUrlVars()['html5'] == 'oui');
     var flashvideo = (!html5video);
-
-    // Lets just set html5video to true right now
-    html5video = true;
 
     var __init__ = function() {
         // Do initial setup
@@ -474,7 +481,7 @@ upVideo = (function upVideo(holder) {
             },
             status : function() {
                 videoDisplay.status();
-            }
+            },
         },
     }
 });

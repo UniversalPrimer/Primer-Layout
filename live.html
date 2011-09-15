@@ -19,7 +19,7 @@
 			<div id="display2" class="upVideoDisplay" style="float:left; margin:0;"></div>
 
             <div id="slides1" class="upSlideDisplay" style="float:left; margin:0 40px">
-                <div class="loader">Slides</div>
+                <div class="loader">Slides<br /><img src="images/spin.gif" /></div>
             </div>
 
 		</div>
@@ -28,14 +28,20 @@
 			vid1 = null;
 
             function start() {
+                console.log('start');
                 var mainvid = getUrlVars()['vid']; 
 
 				ho2 = document.getElementById('display2');
 				up2 = new upVideo(); 
+                console.log('ny video sat op');
 				up2.setup(ho2);
-				up2.video.setSource('http://hmmedia.imm.dtu.dk:8000/stream0.ogg',true);
 				up2.setWidth(320);
-				//up2.setWidth(800);
+				up2.setHeight(240);
+                window.setTimeout(function() {
+                    console.log('set timeout på flash');
+                    //up2.video.setSource2('rtmp://130.225.69.110/flvplayback/foobar', true);
+                    console.log('efter set source');
+                }, 2200);
             }
 
             // This function is not currently available in the UI, since the

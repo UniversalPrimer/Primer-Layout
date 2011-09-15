@@ -25,6 +25,10 @@ video {
 	position	:	relative;
     padding     :   0;
     overflow    :   hidden;
+    background  :   #333;
+    background-image : url('../images/spin.gif');
+    background-repeat : no-repeat;
+    background-position : 50% 50%;
 }
 
 .playiconwrapper {
